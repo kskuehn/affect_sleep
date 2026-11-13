@@ -43,6 +43,9 @@ fit_or_load <- function(name, iter, warmup, ...) {
   for (k in 0:2) {
     mult <- 2^k
     f <- file.path(FIT_DIR, paste0(name, if (k > 0) paste0("_x", mult) else "", ".rds"))
+    # brms's on_change cache ignores iterations, so drop a cached fit run with different settings
+    if (file.exists(f)) { old <- readRDS(f)
+      if (old$fit@sim$iter != iter * mult || old$fit@sim$warmup != warmup * mult) file.remove(f) }
     fit <- brm(..., iter = iter * mult, warmup = warmup * mult, file = f, file_refit = "on_change",
                seed = SEED, refresh = 0, control = list(adapt_delta = 0.95))
     if (max_rhat(fit) <= 1.01) break
