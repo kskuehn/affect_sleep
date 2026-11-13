@@ -1,0 +1,11 @@
+# Participant data never goes in this repository
+data/
+*.sav
+*.csv.gz
+*.rds
+!output/*.csv
+
+# R
+.Rhistory
+.RData
+.Rproj.user/

@@ -1,0 +1,4 @@
+Youths in raw file: 57; analytic (>=1 day with TST and morning PA): 54
+Corrected vs stored totals (analytic youths): r(CTQ) = 1.000, r(RFQ) = 0.997, r(Loneliness) = 1.000
+Youths with a prorated total: CTQ 2, RFQ 1, Loneliness 2
+Youths whose ACEs appear on only some of their rows (filled from first non-missing): 1

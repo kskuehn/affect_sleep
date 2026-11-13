@@ -1,0 +1,6 @@
+Days with both measures: 901 of 966 possible (93.3%); affect 929; actigraphy 925
+Days per youth: M = 16.7, SD = 5.97, range 3-21
+Randomized: M = 19.6 of 21 (range 6-21); not randomized: M = 6.5 of 7 (range 3-7)
+Missed morning report ~ within-person TST: OR = 0.85, 95% CI [0.57, 1.27], p = 0.42
+Completed days by condition (randomized): 19.4 vs 19.8, p = 0.68
+Completed days ~ person-level (randomized): ACEs r = -0.32 (p = 0.04); CTQ r = -0.11 (p = 0.50); RFQ r = -0.08 (p = 0.60); Loneliness r = -0.05 (p = 0.77); Age r = -0.01 (p = 0.95)
