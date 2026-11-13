@@ -37,11 +37,21 @@ iters <- function(o, kind = c("het", "mod")) {
   base
 }
 
-fit_or_load <- function(name, ...) {
-  f <- file.path(FIT_DIR, paste0(name, ".rds"))
-  brm(..., file = f, file_refit = "on_change", seed = SEED, refresh = 0,
-      control = list(adapt_delta = 0.95))
+# Fit (or load a cached fit). If any R-hat exceeds 1.01, refit with twice the iterations and warmup,
+# up to two times; the longer fits are cached as <name>_x2.rds and <name>_x4.rds.
+fit_or_load <- function(name, iter, warmup, ...) {
+  for (k in 0:2) {
+    mult <- 2^k
+    f <- file.path(FIT_DIR, paste0(name, if (k > 0) paste0("_x", mult) else "", ".rds"))
+    fit <- brm(..., iter = iter * mult, warmup = warmup * mult, file = f, file_refit = "on_change",
+               seed = SEED, refresh = 0, control = list(adapt_delta = 0.95))
+    if (max_rhat(fit) <= 1.01) break
+    message(name, ": max R-hat ", round(max_rhat(fit), 3), " at ", iter * mult, " iterations; refitting longer")
+  }
+  fit
 }
+fit_iter <- function(fit) fit$fit@sim$iter
+fit_warmup <- function(fit) fit$fit@sim$warmup
 
 q3 <- function(x) c(mean(x), unname(quantile(x, c(.025, .975))))
 fmt <- function(x, d = 2) { s <- formatC(x, format = "f", digits = d); sub("^-", "−", s) }

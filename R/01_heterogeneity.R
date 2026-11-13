@@ -19,7 +19,7 @@ for (lab in names(OUTCOMES)) {
     range_lo = mean(b) - 1.96 * mean(s), range_hi = mean(b) + 1.96 * mean(s),
     pct_benefit = q3(ben)[1], pct_benefit_lo = q3(ben)[2], pct_benefit_hi = q3(ben)[3],
     delta_elpd = dl[1], delta_elpd_se = dl[2],
-    iter = it[["iter"]], warmup = it[["warmup"]], max_rhat = max(max_rhat(fs), max_rhat(fi)),
+    iter = max(fit_iter(fs), fit_iter(fi)), warmup = max(fit_warmup(fs), fit_warmup(fi)), max_rhat = max(max_rhat(fs), max_rhat(fi)),
     divergences = n_div(fs) + n_div(fi),
     pareto_k_bad = sum(pareto_k_values(ls) > 0.7) + sum(pareto_k_values(li) > 0.7))
   message("heterogeneity done: ", lab)

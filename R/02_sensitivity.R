@@ -13,7 +13,7 @@ for (lab in names(OUTCOMES)) {
   res[[lab]] <- tibble(outcome = lab, days = nrow(d),
     b_within = q3(dr$b_TST_within)[1], b_within_lo = q3(dr$b_TST_within)[2], b_within_hi = q3(dr$b_TST_within)[3],
     slope_sd = q3(dr$sd_ID__TST_within)[1], slope_sd_lo = q3(dr$sd_ID__TST_within)[2], slope_sd_hi = q3(dr$sd_ID__TST_within)[3],
-    max_rhat = max_rhat(f), divergences = n_div(f))
+    iter = fit_iter(f), max_rhat = max_rhat(f), divergences = n_div(f))
   message("sensitivity done: ", lab)
 }
 res <- bind_rows(res)

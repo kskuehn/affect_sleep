@@ -18,7 +18,7 @@ for (lab in names(OUTCOMES)) for (m in names(MODS)) {
     credible = q3(bi)[2] > 0 | q3(bi)[3] < 0,
     slope_low = q3(lo)[1], slope_low_lo = q3(lo)[2], slope_low_hi = q3(lo)[3],
     slope_high = q3(hi)[1], slope_high_lo = q3(hi)[2], slope_high_hi = q3(hi)[3],
-    max_rhat = max_rhat(f), divergences = n_div(f))
+    iter = fit_iter(f), max_rhat = max_rhat(f), divergences = n_div(f))
   message("moderator done: ", lab, " x ", m)
 }
 res <- bind_rows(res)
