@@ -29,11 +29,11 @@ outcome_data <- function(o) {
     mutate(y = .data[[o]])
 }
 
-# iterations: defaults from the manuscript; low-arousal PA is run longer to meet R-hat <= 1.01
+# iterations: defaults from the manuscript; composite and low-arousal PA are run twice as long to meet R-hat <= 1.01
 iters <- function(o, kind = c("het", "mod")) {
   kind <- match.arg(kind)
   base <- if (kind == "het") c(iter = 3000, warmup = 1000) else c(iter = 4000, warmup = 1500)
-  if (o == "PA_low") base <- base * 2
+  if (o %in% c("PA", "PA_low")) base <- base * 2
   base
 }
 
