@@ -1,10 +1,10 @@
 Characteristic,n,Value,Range
-Age (years),52,15.27 (0.95),14<e2><80><93>17
+Age (years),52,15.27 (0.95),14–17
 Female,53,29 (54.7%),
 Habitual sleep,NA,21 (38.9%),
 Sleep extension,NA,21 (38.9%),
 Not randomized,NA,12 (22.2%),
-ACEs,54,1.81 (2.00),0<e2><80><93>9
-CTQ total,54,35.24 (11.87),25<e2><80><93>77
-RFQ total,54,24.67 (9.67),13<e2><80><93>46
-Loneliness,54,17.59 (14.21),0<e2><80><93>54
+ACEs,54,1.81 (2.00),0–9
+CTQ total,54,35.24 (11.87),25–77
+RFQ total,54,24.67 (9.67),13–46
+Loneliness,54,17.59 (14.21),0–54

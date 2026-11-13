@@ -1,4 +1,6 @@
 # functions.R — shared settings and helpers for the model scripts
+# UTF-8 so minus signs and en dashes are written as characters, not <e2><88><92>, under a C locale
+invisible(Sys.setlocale("LC_CTYPE", "C.UTF-8"))
 suppressPackageStartupMessages({ library(brms); library(dplyr); library(tidyr); library(loo); library(readr) })
 options(mc.cores = max(1, min(4, parallel::detectCores())), brms.backend = Sys.getenv("BRMS_BACKEND", "rstan"))
 if (nzchar(Sys.getenv("RSTAN_BOOST_LIB"))) rstan::rstan_options(boost_lib = Sys.getenv("RSTAN_BOOST_LIB"))
@@ -49,7 +51,7 @@ fit_or_load <- function(name, iter, warmup, ...) {
     fit <- brm(..., iter = iter * mult, warmup = warmup * mult, file = f, file_refit = "on_change",
                seed = SEED, refresh = 0, control = list(adapt_delta = 0.95))
     if (max_rhat(fit) <= 1.01) break
-    message(name, ": max R-hat ", round(max_rhat(fit), 3), " at ", iter * mult, " iterations; refitting longer")
+    message(name, ": max R-hat ", round(max_rhat(fit), 3), " at ", iter * mult, " iterations; using ", iter * mult * 2, " iterations")
   }
   fit
 }
@@ -57,7 +59,7 @@ fit_iter <- function(fit) fit$fit@sim$iter
 fit_warmup <- function(fit) fit$fit@sim$warmup
 
 q3 <- function(x) c(mean(x), unname(quantile(x, c(.025, .975))))
-fmt <- function(x, d = 2) { s <- formatC(x, format = "f", digits = d); sub("^-", "−", s) }
+fmt <- function(x, d = 2) { s <- formatC(x, format = "f", digits = d); sub("^-", "\u2212", s) }
 ci  <- function(v, d = 2) sprintf("%s [%s, %s]", fmt(v[1], d), fmt(v[2], d), fmt(v[3], d))
 max_rhat <- function(fit) max(rhat(fit), na.rm = TRUE)
 n_div <- function(fit) { np <- nuts_params(fit); sum(np$Value[np$Parameter == "divergent__"]) }

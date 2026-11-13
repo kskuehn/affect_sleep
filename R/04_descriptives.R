@@ -4,7 +4,7 @@ suppressPackageStartupMessages({ library(lme4); library(psych) })
 
 an <- person %>% filter(analytic)
 msd <- function(x) sprintf("%.2f (%.2f)", mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
-rngs <- function(x) sprintf("%s–%s", formatC(min(x, na.rm = TRUE), format = "fg"), formatC(max(x, na.rm = TRUE), format = "fg"))
+rngs <- function(x) sprintf("%s\u2013%s", formatC(min(x, na.rm = TRUE), format = "fg"), formatC(max(x, na.rm = TRUE), format = "fg"))
 cnt <- function(x) sum(!is.na(x))
 cond_lab <- c("0" = "Habitual sleep", "1" = "Sleep extension", "2" = "Not randomized")
 
