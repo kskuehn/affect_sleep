@@ -88,4 +88,15 @@ rel <- bind_rows(rel, tibble(Scale = c("CTQ", "RFQ", "UCLA Loneliness"), items =
             alpha_of(item_mat(paste0("rfq", 1:13, "a"), paste0("rfq", c(1, 3, 12), "a"))),
             alpha_of(item_mat(paste0("loneliness", 1:20, "a"))))))
 write_csv(rel, "output/reliability.csv")
+# CTQ and the level / variability of negative affect and irritability (floor-effect check for the CTQ moderation)
+lvl <- bind_rows(lapply(c(`Negative affect` = "NAff", Irritability = "Irrit"), function(o) {
+  d <- daily %>% filter(!is.na(.data[[o]])) %>% group_by(ID) %>%
+    summarise(mean = mean(.data[[o]]), sd = sd(.data[[o]]), .groups = "drop") %>% left_join(an %>% select(ID, CTQ), by = "ID")
+  bind_rows(lapply(c("mean", "sd"), function(v) { t <- cor.test(d[[v]], d$CTQ)
+    tibble(person_stat = v, r = round(unname(t$estimate), 2), lo = round(t$conf.int[1], 2), hi = round(t$conf.int[2], 2),
+           p = signif(t$p.value, 2), n = sum(complete.cases(d[c(v, "CTQ")])),
+           below_median_CTQ = round(mean(d[[v]][d$CTQ <= median(d$CTQ)], na.rm = TRUE), 2),
+           above_median_CTQ = round(mean(d[[v]][d$CTQ > median(d$CTQ)], na.rm = TRUE), 2)) }))
+}), .id = "outcome")
+write_csv(lvl, "output/ctq_affect_level.csv")
 message("04_descriptives.R done")

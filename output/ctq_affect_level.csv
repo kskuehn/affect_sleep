@@ -1,0 +1,5 @@
+outcome,person_stat,r,lo,hi,p,n,below_median_CTQ,above_median_CTQ
+Negative affect,mean,0.5,0.27,0.68,1e-4,54,0.15,0.36
+Negative affect,sd,0.54,0.32,0.71,2.1e-5,54,0.15,0.28
+Irritability,mean,0.37,0.11,0.58,0.0057,54,0.12,0.28
+Irritability,sd,0.36,0.11,0.58,0.0067,54,0.15,0.31

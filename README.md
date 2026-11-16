@@ -24,7 +24,7 @@ Requires R with `brms`, `rstan`, `loo`, `dplyr`, `tidyr`, `readr`, `haven`, `lme
 | Script | What it does | Writes |
 |---|---|---|
 | `R/00_clean_data.R` | Builds the analytic daily file and corrected person-level scores | `data/derived/` (ignored), `output/00_cleaning_log.txt` |
-| `R/04_descriptives.R` | Table 1, race/ethnicity, missing-data checks, reliability | `output/table1_*.csv`, `race_ethnicity.csv`, `missing_data.txt`, `reliability.csv` |
+| `R/04_descriptives.R` | Table 1, race/ethnicity, missing-data checks, reliability | `output/table1_*.csv`, `race_ethnicity.csv`, `missing_data.txt`, `reliability.csv`, `ctq_affect_level.csv` |
 | `R/01_heterogeneity.R` | Average within-person associations and random-slope heterogeneity, with LOO comparisons | `output/table2_associations.csv`, `table3_heterogeneity.csv`, `heterogeneity_full.csv` |
 | `R/02_sensitivity.R` | Average associations adjusted for study day and phase × condition | `output/sensitivity_condition_time.csv` |
 | `R/03_moderators.R` | 36 cross-level interactions (6 outcomes × 6 moderators) | `output/table4_moderators.csv`, `moderators_full.csv` |
