@@ -28,6 +28,7 @@ Requires R with `brms`, `rstan`, `loo`, `dplyr`, `tidyr`, `readr`, `haven`, `lme
 | `R/01_heterogeneity.R` | Average within-person associations and random-slope heterogeneity, with LOO comparisons | `output/table2_associations.csv`, `table3_heterogeneity.csv`, `heterogeneity_full.csv` |
 | `R/02_sensitivity.R` | Average associations adjusted for study day and phase × condition | `output/sensitivity_condition_time.csv` |
 | `R/03_moderators.R` | 36 cross-level interactions (6 outcomes × 6 moderators) | `output/table4_moderators.csv`, `moderators_full.csv` |
+| `R/05_figures.R` | Figure 3: the three credible interactions (sleep slope across the moderator, with 95% CrI) | `output/figures/figure3_moderators.png` |
 
 ## Analytic decisions
 
