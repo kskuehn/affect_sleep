@@ -6,7 +6,7 @@ The pipeline rebuilds every number in the manuscript's tables and Results from t
 
 ## Data
 
-The raw data are **not** in this repository. Put the two exports in `data/raw/` (or point `DATA_DIR` at them):
+The raw data are **not** in this repository (the de-identified analytic file is; see below). Put the two exports in `data/raw/` (or point `DATA_DIR` at them):
 
 - `THSS Daily Sleep and Diary Data.sav`
 - `THSS LONG CRP and Affect 6.30.2026.csv`
@@ -29,12 +29,12 @@ Requires R with `brms`, `rstan`, `loo`, `dplyr`, `tidyr`, `readr`, `haven`, `lme
 | `R/02_sensitivity.R` | Average associations adjusted for study day and phase × condition | `output/sensitivity_condition_time.csv` |
 | `R/03_moderators.R` | 36 cross-level interactions (6 outcomes × 6 moderators) | `output/table4_moderators.csv`, `moderators_full.csv` |
 | `R/05_figures.R` | Figure 3: the three credible interactions (sleep slope across the moderator, with 95% CrI) | `output/figures/figure3_moderators.png` |
-| `R/06_make_shared_data.R` | De-identified analytic dataset for controlled-access sharing, plus a re-identification check | `data/shared/` (ignored) |
+| `R/06_make_shared_data.R` | Public de-identified analytic dataset, plus a re-identification check kept private | `shared_data/`, `data/shared/` (ignored) |
 | `R/00_from_shared.R` | Rebuilds the analysis files from the de-identified dataset instead of the raw exports | `data/derived/` (ignored) |
 
 ## De-identified data
 
-A de-identified version of the analytic data (random IDs, study day only, age in two groups, questionnaire totals only, no race or ethnicity) can be built with `R/06_make_shared_data.R`. It is not in this repository; it will be deposited under controlled access once sharing is approved. See [`docs/shared_data_codebook.md`](docs/shared_data_codebook.md) for the variables and how to rerun the analyses from it.
+A de-identified version of the analytic data is in [`shared_data/`](shared_data/): one row per youth per day, with random IDs, study day only, sex, questionnaire totals, nightly sleep and morning affect. It omits study IDs, dates, age, race and ethnicity, and item-level questionnaire responses. [`docs/shared_data_codebook.md`](docs/shared_data_codebook.md) lists the variables and how to rerun the analyses from it (`R/00_from_shared.R`).
 
 ## Analytic decisions
 

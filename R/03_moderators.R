@@ -6,6 +6,7 @@ source("R/functions.R")
 MODS <- c(ACEs = "ACEs_z", CTQ = "CTQ_z", RFQ = "RFQ_z", Loneliness = "Lon_z", Age = "Age_z", Sex = "Female")
 res <- list()
 for (lab in names(OUTCOMES)) for (m in names(MODS)) {
+  if (all(is.na(person[[MODS[[m]]]]))) next   # e.g. age, which the public de-identified file omits
   o <- OUTCOMES[[lab]]; it <- iters(o, "mod")
   d <- outcome_data(o) %>% left_join(person %>% select(ID, M = all_of(MODS[[m]])), by = "ID") %>% filter(!is.na(M))
   f <- fit_or_load(paste0("mod_", o, "_x_", m), formula = y ~ TST_within * M + TST_between + (1 + TST_within | ID),

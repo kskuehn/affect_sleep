@@ -1,4 +1,4 @@
-# Participant data never goes in this repository
+# Raw, cleaned and item-level participant data never go in this repository (only shared_data/, below)
 data/
 *.sav
 *.csv.gz
@@ -9,3 +9,7 @@ data/
 .Rhistory
 .RData
 .Rproj.user/
+
+# The public de-identified dataset is the one data file tracked here
+!shared_data/
+!shared_data/*.csv
